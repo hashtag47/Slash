@@ -20,15 +20,17 @@ void AItems::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	UWorld* World = GetWorld();
+	//UWorld* World = GetWorld();
 	FVector Location = GetActorLocation();
 	FVector Forward = GetActorForwardVector();
 
 	// We could bundle the function into the macro, macro here just replace the text,
 	// but it won't check if any error occurs
-	DRAW_LINE(Location, Location + Forward * 100.f)
+	//DRAW_LINE(Location, Location + Forward * 100.f);
+	//DRAW_SPHERE(Location);
+	//DRAW_POINT(Location + Forward * 100.f);
 
-	DRAW_SPHERE(Location)
+	DRAW_VECTOR(Location, Location + Forward * 100.f);
 }
 
 // Called every frame
