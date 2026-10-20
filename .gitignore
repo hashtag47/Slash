@@ -23,3 +23,6 @@ Plugins/*/Intermediate/
 *.tmp
 .DS_Store
 Thumbs.db
+
+# Fab Assets
+Content/Fab/
