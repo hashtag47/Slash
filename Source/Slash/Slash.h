@@ -8,3 +8,6 @@
 		if(GetWorld()) DrawDebugSphere( \
 		GetWorld(), Location, 25.f, 12, FColor::Red, true);
 
+#define DRAW_LINE(Start, END) \
+		if(GetWorld()) DrawDebugLine( \
+		GetWorld(), Start, END, FColor::Red, true, -1.f, 0, 1.f);
