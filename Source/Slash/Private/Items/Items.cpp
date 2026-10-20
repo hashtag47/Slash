@@ -1,11 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Items/Items.h"
-#include "DrawDebugHelpers.h"
-#include "Slash/Slash.h"
-
-#define THIRTY 30
+#include "Slash/DebugMacros.h"
 
 // Sets default values
 AItems::AItems()
@@ -30,7 +25,8 @@ void AItems::BeginPlay()
 	//DRAW_SPHERE(Location);
 	//DRAW_POINT(Location + Forward * 100.f);
 
-	DRAW_VECTOR(Location, Location + Forward * 100.f);
+	//DRAW_VECTOR(Location, Location + Forward * 100.f);
+	DRAW_VECTOR_ARROW(Location, Location + Forward * 100.f);
 }
 
 // Called every frame
