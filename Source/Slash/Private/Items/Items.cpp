@@ -15,7 +15,11 @@ void AItems::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	//UWorld* World = GetWorld();
+	UWorld* World = GetWorld();
+	SetActorLocation(FVector(0.f, 0.f, 50.f));
+	// YZX
+	SetActorRotation(FRotator(0.f, 45.f, 0));
+
 	FVector Location = GetActorLocation();
 	FVector Forward = GetActorForwardVector();
 
@@ -27,6 +31,7 @@ void AItems::BeginPlay()
 
 	//DRAW_VECTOR(Location, Location + Forward * 100.f);
 	DRAW_VECTOR_ARROW(Location, Location + Forward * 100.f);
+	DRAW_SPHERE(Location);
 }
 
 // Called every frame
