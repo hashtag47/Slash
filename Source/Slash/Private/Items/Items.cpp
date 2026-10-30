@@ -32,6 +32,10 @@ void AItems::BeginPlay()
 	//DRAW_VECTOR(Location, Location + Forward * 100.f);
 	//DRAW_VECTOR_ARROW(Location, Location + Forward * 100.f);
 	//DRAW_SPHERE(Location);
+	//
+	//int32 AvgInt = Avg<int32>(1, 3);
+	//UE_LOG(LogTemp, Warning, TEXT("Avg of 1 and 3: %d"), AvgInt);
+
 }
 
 float AItems::TransformedSin()
@@ -60,5 +64,9 @@ void AItems::Tick(float DeltaTime)
 	DRAW_SPHERE_SingleFrame(GetActorLocation());
 	DRAW_VECTOR_ARROW_SingleFrame(GetActorLocation(), GetActorLocation() + GetActorForwardVector() * 100.f);
 
+	FVector AvgVector = Avg<FVector>(GetActorLocation(), FVector::ZeroVector);
+	DRAW_SPHERE_SingleFrame(AvgVector);
+	// But this will not work, because FRotator does not have operator + and operator / defined
+	// FRotator AvgRotator = Avg<FRotator>(GetActorRotation(), FRotator::ZeroRotator);
 }
 

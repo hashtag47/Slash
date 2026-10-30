@@ -34,8 +34,17 @@ protected:
 	UFUNCTION(BlueprintPure)
 	float TransformedCos();
 
+	template<typename T>
+	T Avg(T First, T Second);
+
 private:
 	// We could also add meta = (AllowPrivateAccess = "true") to make the private variable visible/changeable in the blueprint
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	float RunningTime;
 };
+
+template<typename T>
+inline T AItems::Avg(T First, T Second)
+{
+	return (First + Second) / 2;
+}
