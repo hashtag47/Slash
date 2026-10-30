@@ -3,7 +3,7 @@
 #include "Slash/DebugMacros.h"
 
 // Sets default values
-AItems::AItems() : RunningTime{0.f}, Amplitude{0.25f}, TimeConstant{5.f}
+AItems::AItems() : Amplitude{0.25f}, TimeConstant{5.f}, RunningTime{ 0.f }
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -34,6 +34,16 @@ void AItems::BeginPlay()
 	//DRAW_SPHERE(Location);
 }
 
+float AItems::TransformedSin()
+{
+	return Amplitude * FMath::Sin(RunningTime * TimeConstant);
+}
+
+float AItems::TransformedCos()
+{
+	return Amplitude * FMath::Cos(RunningTime * TimeConstant);
+}
+
 // Called every frame
 void AItems::Tick(float DeltaTime)
 {
@@ -42,9 +52,10 @@ void AItems::Tick(float DeltaTime)
 	RunningTime += DeltaTime;
 
 	// default amplitude = 0.25, frequency/ time constant = 5
-	float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
+	//float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
+	//float DeltaZ = TransformedSin();
 
-	AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
+	//AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
 
 	DRAW_SPHERE_SingleFrame(GetActorLocation());
 	DRAW_VECTOR_ARROW_SingleFrame(GetActorLocation(), GetActorLocation() + GetActorForwardVector() * 100.f);

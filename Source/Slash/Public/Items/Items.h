@@ -26,6 +26,14 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sine Parameters") // Instance is for each placed item in the level, if we have several placed items, we can set different time constant for each item
 	float TimeConstant;
 
+	// BlueprintCallable is for calling the function in the blueprint, 
+	// we can also use BlueprintPure, which is for calling the function in the blueprint without any input or output
+	UFUNCTION(BlueprintPure)
+	float TransformedSin();
+
+	UFUNCTION(BlueprintPure)
+	float TransformedCos();
+
 private:
 	// We could also add meta = (AllowPrivateAccess = "true") to make the private variable visible/changeable in the blueprint
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
