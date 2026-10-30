@@ -20,6 +20,9 @@ protected:
 
 private:
 	float RunningTime;
+	// Anywhere is for both
+	UPROPERTY(EditAnywhere) // Default is for the blueprint class, not for each placed item in the level
 	float Amplitude;
+	UPROPERTY(EditAnywhere) // Instance is for each placed item in the level, if we have several placed items, we can set different time constant for each item
 	float TimeConstant;
 };
