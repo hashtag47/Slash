@@ -34,6 +34,18 @@ protected:
 	UFUNCTION(BlueprintPure)
 	float TransformedCos();
 
+	UFUNCTION(BlueprintPure)
+	FRotator RotateAboutZAxis(float DeltaTime) const;
+
+	UFUNCTION(BlueprintPure)
+	FRotator RotateAboutXAis(float DeltaTime) const;
+
+	UFUNCTION(BlueprintPure)
+	FRotator RotateAboutYAxis(float DeltaTime) const;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Rotation")
+	float RotationRate;
+
 	template<typename T>
 	T Avg(T First, T Second);
 
