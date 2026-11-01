@@ -6,6 +6,9 @@
 #include "GameFramework/Character.h"
 #include "SlashCharacter.generated.h"
 
+class UCameraComponent;
+class USpringArmComponent;
+
 UCLASS()
 class SLASH_API ASlashCharacter : public ACharacter
 {
@@ -24,7 +27,15 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	void MoveForward(float Value);
+	void Turn(float Value);
+	void LookUp(float Value);
+	void MoveRight(float Value);
 
 private:
-	void MoveForward(float Value);
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* ViewCamera;
+
+	UPROPERTY(VisibleAnywhere)
+	USpringArmComponent* CameraBoom;
 };
