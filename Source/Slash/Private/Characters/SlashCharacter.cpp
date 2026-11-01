@@ -4,6 +4,7 @@
 #include "Characters/SlashCharacter.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 ASlashCharacter::ASlashCharacter()
@@ -14,6 +15,9 @@ ASlashCharacter::ASlashCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
+
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
 
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(GetRootComponent());
@@ -34,8 +38,14 @@ void ASlashCharacter::MoveForward(float Value)
 {
 	if(Controller && (Value != 0.f))
 	{
-		FVector Forward = GetActorForwardVector();
-		AddMovementInput(Forward, Value);
+		// find out which way is forward, only the controller stores the control rotation 
+		// One more thing in the Character Movement we should check the Orient Rotation to Movement
+		// We set it inside the constructor of the character class
+		const FRotator ControlRotation = GetControlRotation();
+		const FRotator YawRotation{ 0.f, ControlRotation.Yaw, 0.f };
+
+		const FVector NormalizedDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		AddMovementInput(NormalizedDirection, Value);
 	}
 }
 
@@ -59,8 +69,14 @@ void ASlashCharacter::MoveRight(float Value)
 {
 	if (Controller && (Value != 0.f))
 	{
-		FVector Right = GetActorRightVector();
-		AddMovementInput(Right, Value);
+		// find out which way is right, only the controller stores the control rotation
+		// One more thing in the Character Movement we should check the Orient Rotation to Movement
+		// We set it inside the constructor of the character class
+		const FRotator ControlRotation = GetControlRotation();
+		const FRotator YawRotation{ 0.f, ControlRotation.Yaw, 0.f };
+
+		const FVector NormalizedDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		AddMovementInput(NormalizedDirection, Value);
 	}
 }
 
