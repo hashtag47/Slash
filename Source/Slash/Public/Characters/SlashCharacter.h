@@ -8,6 +8,7 @@
 
 class UCameraComponent;
 class USpringArmComponent;
+class UGroomComponent;
 
 UCLASS()
 class SLASH_API ASlashCharacter : public ACharacter
@@ -38,4 +39,10 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* CameraBoom;
+
+	UPROPERTY(VisibleAnywhere, Category = Hair)
+	UGroomComponent* Hair;
+
+	UPROPERTY(VisibleAnywhere, Category = Hair)
+	UGroomComponent* Eyebrows;
 };
