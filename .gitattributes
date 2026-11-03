@@ -1,4 +1,4 @@
-  * text=auto
-  *.ini text eol=crlf
-  *.uasset binary
-  *.umap binary
+* text=auto
+*.ini text eol=crlf
+*.uasset filter=lfs diff=lfs merge=lfs -text
+*.umap filter=lfs diff=lfs merge=lfs -text
