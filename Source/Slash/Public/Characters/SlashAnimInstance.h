@@ -17,6 +17,7 @@ public:
 	// Equals to the Event Blueprint Initialize Animation in Unreal Editor
 	virtual void NativeInitializeAnimation() override;
 	// Equals to the Event Blueprint Update Animation in Unreal Editor
+	// Update each frame the animation blueprint with the character's movement information
 	virtual void NativeUpdateAnimation(float DeltaTime) override;
 
 	// Forward the character to the animation blueprint
@@ -25,6 +26,10 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category = Movement)
 	UCharacterMovementComponent* SlashCharacterMovement;
+
 	UPROPERTY(BlueprintReadOnly, Category = Movement)
 	float GroundSpeed;
+
+	UPROPERTY(BlueprintReadOnly, Category = Movement)
+	bool IsFalling;
 };
