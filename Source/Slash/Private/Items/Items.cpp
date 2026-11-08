@@ -13,7 +13,6 @@ AItems::AItems() : Amplitude{0.25f}, TimeConstant{5.f}, RunningTime{ 0.f }, Rota
 	RootComponent = ItemMesh;
 
 	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
-	Sphere->SetupAttachment(GetRootComponent());
 }
 
 // Called when the game starts or when spawned
