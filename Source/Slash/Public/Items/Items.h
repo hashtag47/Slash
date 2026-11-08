@@ -54,6 +54,9 @@ protected:
 	// Bind this to the delegate so have to be U functions to be exposed to the reflection system
 	UFUNCTION()
 	void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	
+	UFUNCTION()
+	void OffSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 private:
 	// We could also add meta = (AllowPrivateAccess = "true") to make the private variable visible/changeable in the blueprint
