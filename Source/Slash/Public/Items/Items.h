@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "Items.generated.h"
 
+class USphereComponent;
+
 UCLASS()
 class SLASH_API AItems : public AActor
 {
@@ -49,6 +51,10 @@ protected:
 	template<typename T>
 	T Avg(T First, T Second);
 
+	// Bind this to the delegate so have to be U functions to be exposed to the reflection system
+	UFUNCTION()
+	void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
 private:
 	// We could also add meta = (AllowPrivateAccess = "true") to make the private variable visible/changeable in the blueprint
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
@@ -56,6 +62,9 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* ItemMesh;
+
+	UPROPERTY(VisibleAnywhere)
+	USphereComponent* Sphere;
 };
 
 template<typename T>
