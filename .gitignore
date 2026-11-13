@@ -35,3 +35,9 @@ Content/EchoContent/
 
 # WindwalkerEcho50EA.uproject
 WindwalkerEcho50EA.uproject
+
+# Unreal Engine Assets
+Assets/
+
+# Mixamo Assets
+Content/Mixamo/
