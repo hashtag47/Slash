@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "CharacterTypes.h"
 #include "SlashCharacter.generated.h"
 
 class UCameraComponent;
@@ -51,6 +52,9 @@ private:
 	UPROPERTY(VisibleInstanceOnly)
 	AItems* OverlappingItem;
 
+	ECharacterState CharacterState = ECharacterState::ECS_Unequipped;
+
 public:
 	FORCEINLINE void SetOverlappingItem(AItems* Item) { OverlappingItem = Item;}
+	FORCEINLINE ECharacterState GetCharacterState() const { return CharacterState; }
 };
