@@ -2,6 +2,7 @@
 #include "Items/Items.h"
 #include "Slash/DebugMacros.h"
 #include "Components/SphereComponent.h"
+#include "Characters/SlashCharacter.h"
 
 // Sets default values
 AItems::AItems() : Amplitude{0.25f}, TimeConstant{5.f}, RunningTime{ 0.f }, RotationRate{45.f}
@@ -59,17 +60,26 @@ FRotator AItems::RotateAboutYAxis(float DeltaTime) const
 
 void AItems::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	const FString OtherActorName = OtherActor->GetName();
-	if (GEngine) {
-		GEngine->AddOnScreenDebugMessage(1, 30.f, FColor::Red, OtherActorName);
+	// Instead of printing out the Debug message now we choose to set the OverlappingItem to it
+	// const FString OtherActorName = OtherActor->GetName();
+	//if (GEngine) {
+	//	GEngine->AddOnScreenDebugMessage(1, 30.f, FColor::Red, OtherActorName);
+	//}
+	ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
+	if (SlashCharacter) {
+		SlashCharacter->SetOverlappingItem(this);
 	}
 }
 
 void AItems::OffSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	const FString OtherActorName = OtherActor->GetName();
-	if (GEngine) {
-		GEngine->AddOnScreenDebugMessage(2, 30.f, FColor::Red, FString::Printf(TEXT("Off Sphere Overlap: %s"), *OtherActorName));
+	//const FString OtherActorName = OtherActor->GetName();
+	//if (GEngine) {
+	//	GEngine->AddOnScreenDebugMessage(2, 30.f, FColor::Red, FString::Printf(TEXT("Off Sphere Overlap: %s"), *OtherActorName));
+	//}
+	ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
+	if (SlashCharacter) {
+		SlashCharacter->SetOverlappingItem(nullptr);
 	}
 }
 

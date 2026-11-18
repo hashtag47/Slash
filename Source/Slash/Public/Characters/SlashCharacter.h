@@ -9,6 +9,7 @@
 class UCameraComponent;
 class USpringArmComponent;
 class UGroomComponent;
+class AItems;
 
 UCLASS()
 class SLASH_API ASlashCharacter : public ACharacter
@@ -32,6 +33,7 @@ protected:
 	void Turn(float Value);
 	void LookUp(float Value);
 	void MoveRight(float Value);
+	void EKeyPressed();
 
 private:
 	UPROPERTY(VisibleAnywhere)
@@ -45,4 +47,10 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = Hair)
 	UGroomComponent* Eyebrows;
+
+	UPROPERTY(VisibleInstanceOnly)
+	AItems* OverlappingItem;
+
+public:
+	FORCEINLINE void SetOverlappingItem(AItems* Item) { OverlappingItem = Item;}
 };

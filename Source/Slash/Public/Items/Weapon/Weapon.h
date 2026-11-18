@@ -11,6 +11,9 @@ class SLASH_API AWeapon : public AItems
 {
 	GENERATED_BODY()
 
+public:
+	void Equip(USceneComponent* InParent, FName InSocketName);
+
 protected: 
 	// Bind this to the delegate so have to be U functions to be exposed to the reflection system
 	// UFUNCTION() -> Because Weapon is derived from AItems, the UFUNCTION() is already in the parent class, we need to remove it here, otherwise it will cause compile error
